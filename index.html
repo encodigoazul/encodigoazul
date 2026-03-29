@@ -1,216 +1,138 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>En Código Azul</title>
-<meta name="description" content="Radio y podcast de salud en lenguaje enfermero. Escucha en vivo y episodios en Spotify.">
+  <meta charset="UTF-8">
+  <title>En Código Azul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2966/2966327.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0B1C2C;
+      color: white;
+      text-align: center;
+    }
 
-<style>
-:root{
-  --bg:#020617;
-  --bg-soft:#0A2540;
-  --card:#0f172a;
-  --accent:#E63946;
-  --blue:#1E5AA8;
-  --text:#ffffff;
-  --muted:#94a3b8;
-}
+    header {
+      background: #00AEEF;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+    }
 
-*{box-sizing:border-box}
+    .container {
+      padding: 20px;
+    }
 
-body{
-  margin:0;
-  font-family:'Inter',sans-serif;
-  background:linear-gradient(180deg,var(--bg-soft),var(--bg));
-  color:var(--text);
-}
+    .radio-box {
+      background: #132F4C;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
 
-/* NAV */
-.nav{
-  position:sticky;
-  top:0;
-  backdrop-filter:blur(10px);
-  background:rgba(2,6,23,0.7);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 25px;
-  z-index:1000;
-}
+    button {
+      background: #00AEEF;
+      border: none;
+      padding: 12px 25px;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-.nav a{
-  color:white;
-  text-decoration:none;
-  margin-left:20px;
-  font-weight:500;
-}
+    button:hover {
+      background: #008FCC;
+    }
 
-/* HERO */
-.hero{
-  text-align:center;
-  padding:80px 20px 50px;
-}
+    .status {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #7CFFB2;
+    }
 
-.hero h1{
-  font-size:48px;
-  margin-bottom:10px;
-}
+    iframe {
+      margin-top: 20px;
+      border-radius: 12px;
+    }
 
-.hero p{
-  color:var(--muted);
-  font-size:18px;
-}
-
-/* BOTONES */
-.btn{
-  display:inline-block;
-  padding:14px 24px;
-  margin:10px;
-  border-radius:14px;
-  font-weight:600;
-  cursor:pointer;
-  text-decoration:none;
-  transition:.3s;
-}
-
-.btn:hover{transform:scale(1.05)}
-
-.btn-radio{background:var(--accent)}
-.btn-podcast{background:var(--blue)}
-
-/* SECTION */
-.section{
-  max-width:900px;
-  margin:40px auto;
-  padding:30px;
-  border-radius:20px;
-  background:rgba(15,23,42,0.6);
-  backdrop-filter:blur(10px);
-}
-
-/* RADIO */
-.live{color:var(--accent);font-weight:bold}
-audio{width:100%;margin-top:15px}
-
-/* PODCAST */
-iframe{
-  width:100%;
-  border-radius:16px;
-  margin-top:20px;
-}
-
-/* EXTRA BUTTONS */
-.actions{
-  margin-top:15px;
-}
-
-.actions a{
-  font-size:14px;
-  color:var(--muted);
-  margin:0 10px;
-}
-
-/* PLAYER FIJO */
-.player-fixed{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:var(--bg);
-  padding:10px;
-  border-top:1px solid #1f2937;
-  z-index:2000;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  margin:60px 0 120px;
-  color:var(--muted);
-  font-size:14px;
-}
-
-/* RESPONSIVE */
-@media(max-width:600px){
-  .hero h1{font-size:32px}
-}
-</style>
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      background: #08131F;
+      font-size: 12px;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<div class="nav">
-  <strong>En Código Azul</strong>
+<header>
+  🎙️ En Código Azul
+</header>
+
+<div class="container">
+
+  <!-- RADIO -->
+  <div class="radio-box">
+    <h2>🔴 Radio en Vivo</h2>
+
+    <audio id="radio" preload="none">
+      <source src="https://cast6.my-control-panel.com:9253/;stream.mp3" type="audio/mpeg">
+    </audio>
+
+    <button onclick="playRadio()">▶️ Escuchar Radio</button>
+
+    <div class="status" id="status">Estado: detenido</div>
+
+    <!-- Fallback -->
+    <div id="fallback" style="display:none;">
+      <p>⚠️ Reproducción directa no disponible. Usa el reproductor:</p>
+      <iframe 
+        src="http://cast6.my-control-panel.com:9253/index.html?sid=1"
+        width="100%" 
+        height="120">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- PODCAST -->
   <div>
-    <a href="#radio">Radio</a>
-    <a href="#podcast">Podcast</a>
+    <h2>🎧 Podcast en Spotify</h2>
+
+    <iframe style="border-radius:12px"
+      src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
+      width="100%" 
+      height="352"
+      frameborder="0"
+      allowfullscreen
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
+
   </div>
+
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>En Código Azul</h1>
-  <p>Temas de salud en lenguaje enfermero</p>
-
-  <a onclick="playRadio()" href="#radio" class="btn btn-radio">🔴 EN VIVO</a>
-  <a href="#podcast" class="btn btn-podcast">🎧 PODCAST</a>
-</section>
-
-<!-- RADIO -->
-<section id="radio" class="section">
-  <h2><span class="live">● EN VIVO AHORA</span></h2>
-  <p>Escucha nuestra señal online 24/7</p>
-
-  <audio controls id="radioMain">
-    <source src="https://cast6.asurahosting.com/stream/radio_salud_latina" type="audio/mpeg">
-  </audio>
-
-  <p>Si no inicia, presiona play</p>
-</section>
-
-<!-- PODCAST -->
-<section id="podcast" class="section">
-  <h2>🎧 Podcast en Spotify</h2>
-  <p>Escucha todos los episodios</p>
-
-  <iframe 
-    src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
-    height="352"
-    frameborder="0"
-    allow="autoplay; encrypted-media">
-  </iframe>
-
-  <div class="actions">
-    <a href="https://open.spotify.com/show/0HUu3XkUTCDn2WqkYugt2l" target="_blank">
-      Abrir en Spotify
-    </a>
-  </div>
-</section>
-
-<!-- PLAYER FIJO -->
-<div class="player-fixed">
-  <audio controls id="radioFixed">
-    <source src="https://cast6.asurahosting.com/stream/radio_salud_latina" type="audio/mpeg">
-  </audio>
-</div>
-
-<!-- FOOTER -->
 <footer>
-  En Código Azul © 2026<br>
-  Radio & Podcast de salud en lenguaje enfermero
+  © 2026 En Código Azul
 </footer>
 
 <script>
-function playRadio(){
-  const m=document.getElementById("radioMain");
-  const f=document.getElementById("radioFixed");
+function playRadio() {
+  const radio = document.getElementById("radio");
+  const status = document.getElementById("status");
+  const fallback = document.getElementById("fallback");
 
-  m.play().catch(()=>{});
-  f.play().catch(()=>{});
+  radio.play()
+    .then(() => {
+      status.innerText = "🔴 EN VIVO";
+    })
+    .catch(() => {
+      status.innerText = "Error → usando reproductor alternativo";
+      fallback.style.display = "block";
+    });
 }
 </script>
 
