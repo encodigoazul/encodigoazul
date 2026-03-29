@@ -32,7 +32,6 @@
       padding: 20px;
       border-radius: 16px;
       margin-bottom: 30px;
-      backdrop-filter: blur(10px);
     }
 
     iframe {
@@ -40,8 +39,12 @@
       margin-top: 15px;
     }
 
+    h2 {
+      margin-bottom: 10px;
+    }
+
     /* BOTÓN FLOTANTE */
-    .floating-player {
+    .floating-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -49,16 +52,16 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
+      font-size: 28px;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 28px;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
       z-index: 1000;
     }
 
-    .floating-player:hover {
+    .floating-btn:hover {
       background: #008FCC;
     }
 
@@ -99,6 +102,7 @@
 
 <div class="container">
 
+  <!-- PODCAST -->
   <div class="card">
     <h2>🎧 Podcast en Spotify</h2>
 
@@ -109,26 +113,29 @@
       frameborder="0"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
+
+    <p style="font-size:14px; opacity:0.8;">
+      Escucha todos los episodios directamente desde Spotify
+    </p>
   </div>
 
 </div>
 
 <!-- BOTÓN FLOTANTE -->
-<div class="floating-player" onclick="toggleRadio()">
+<div class="floating-btn" onclick="toggleRadio()">
   ▶️
 </div>
 
-<!-- PANEL RADIO -->
+<!-- RADIO (SOLUCIÓN MÁS ESTABLE) -->
 <div class="radio-panel" id="radioPanel">
 
   <div class="live">🔴 EN VIVO</div>
 
   <iframe 
-    src="https://cast6.asurahosting.com/public/radio_salud_latina"
+    src="http://cast6.my-control-panel.com:9253/index.html?sid=1"
     width="100%" 
     height="120"
-    frameborder="0"
-    allow="autoplay">
+    frameborder="0">
   </iframe>
 
 </div>
@@ -140,12 +147,7 @@
 <script>
 function toggleRadio() {
   const panel = document.getElementById("radioPanel");
-
-  if (panel.style.display === "block") {
-    panel.style.display = "none";
-  } else {
-    panel.style.display = "block";
-  }
+  panel.style.display = (panel.style.display === "block") ? "none" : "block";
 }
 </script>
 
