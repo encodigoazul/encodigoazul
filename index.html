@@ -9,16 +9,16 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0B1C2C;
+      background: linear-gradient(135deg, #0B1C2C, #132F4C);
       color: white;
       text-align: center;
     }
 
     header {
-      background: #00AEEF;
-      padding: 20px;
-      font-size: 28px;
+      padding: 25px;
+      font-size: 30px;
       font-weight: bold;
+      background: #00AEEF;
     }
 
     .container {
@@ -27,37 +27,59 @@
       margin: auto;
     }
 
-    .radio-box {
-      background: #132F4C;
+    .card {
+      background: rgba(255,255,255,0.05);
       padding: 20px;
-      border-radius: 12px;
+      border-radius: 16px;
       margin-bottom: 30px;
-    }
-
-    button {
-      background: #00AEEF;
-      border: none;
-      padding: 12px 25px;
-      color: white;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background: #008FCC;
-    }
-
-    .status {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #7CFFB2;
+      backdrop-filter: blur(10px);
     }
 
     iframe {
-      margin-top: 15px;
       border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    /* BOTÓN FLOTANTE */
+    .floating-player {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #00AEEF;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      z-index: 1000;
+    }
+
+    .floating-player:hover {
+      background: #008FCC;
+    }
+
+    /* PANEL RADIO */
+    .radio-panel {
+      position: fixed;
+      bottom: 100px;
+      right: 20px;
+      width: 320px;
+      background: #132F4C;
+      border-radius: 16px;
+      padding: 15px;
+      display: none;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      z-index: 1000;
+    }
+
+    .live {
+      color: #7CFFB2;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
     footer {
@@ -77,39 +99,37 @@
 
 <div class="container">
 
-  <!-- RADIO -->
-  <div class="radio-box">
-    <h2>🔴 Radio en Vivo</h2>
-
-    <button onclick="mostrarRadio()">▶️ Escuchar Radio</button>
-
-    <div class="status">Haz clic para activar la radio</div>
-
-    <div id="radioPlayer" style="display:none;">
-      <iframe 
-        src="https://cast6.asurahosting.com/public/radio_salud_latina"
-        width="100%" 
-        height="180" 
-        frameborder="0"
-        allow="autoplay">
-      </iframe>
-    </div>
-  </div>
-
-  <!-- PODCAST -->
-  <div>
+  <div class="card">
     <h2>🎧 Podcast en Spotify</h2>
 
-    <iframe style="border-radius:12px"
+    <iframe 
       src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
       width="100%" 
       height="352"
       frameborder="0"
-      allowfullscreen
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
-
   </div>
+
+</div>
+
+<!-- BOTÓN FLOTANTE -->
+<div class="floating-player" onclick="toggleRadio()">
+  ▶️
+</div>
+
+<!-- PANEL RADIO -->
+<div class="radio-panel" id="radioPanel">
+
+  <div class="live">🔴 EN VIVO</div>
+
+  <iframe 
+    src="https://cast6.asurahosting.com/public/radio_salud_latina"
+    width="100%" 
+    height="120"
+    frameborder="0"
+    allow="autoplay">
+  </iframe>
 
 </div>
 
@@ -118,8 +138,14 @@
 </footer>
 
 <script>
-function mostrarRadio() {
-  document.getElementById("radioPlayer").style.display = "block";
+function toggleRadio() {
+  const panel = document.getElementById("radioPanel");
+
+  if (panel.style.display === "block") {
+    panel.style.display = "none";
+  } else {
+    panel.style.display = "block";
+  }
 }
 </script>
 
