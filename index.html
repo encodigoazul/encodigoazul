@@ -23,6 +23,8 @@
 
     .container {
       padding: 20px;
+      max-width: 900px;
+      margin: auto;
     }
 
     .radio-box {
@@ -54,7 +56,7 @@
     }
 
     iframe {
-      margin-top: 20px;
+      margin-top: 15px;
       border-radius: 12px;
     }
 
@@ -79,21 +81,17 @@
   <div class="radio-box">
     <h2>🔴 Radio en Vivo</h2>
 
-    <audio id="radio" preload="none">
-      <source src="https://cast6.my-control-panel.com:9253/;stream.mp3" type="audio/mpeg">
-    </audio>
+    <button onclick="mostrarRadio()">▶️ Escuchar Radio</button>
 
-    <button onclick="playRadio()">▶️ Escuchar Radio</button>
+    <div class="status">Haz clic para activar la radio</div>
 
-    <div class="status" id="status">Estado: detenido</div>
-
-    <!-- Fallback -->
-    <div id="fallback" style="display:none;">
-      <p>⚠️ Reproducción directa no disponible. Usa el reproductor:</p>
+    <div id="radioPlayer" style="display:none;">
       <iframe 
-        src="http://cast6.my-control-panel.com:9253/index.html?sid=1"
+        src="https://cast6.asurahosting.com/public/radio_salud_latina"
         width="100%" 
-        height="120">
+        height="180" 
+        frameborder="0"
+        allow="autoplay">
       </iframe>
     </div>
   </div>
@@ -120,19 +118,8 @@
 </footer>
 
 <script>
-function playRadio() {
-  const radio = document.getElementById("radio");
-  const status = document.getElementById("status");
-  const fallback = document.getElementById("fallback");
-
-  radio.play()
-    .then(() => {
-      status.innerText = "🔴 EN VIVO";
-    })
-    .catch(() => {
-      status.innerText = "Error → usando reproductor alternativo";
-      fallback.style.display = "block";
-    });
+function mostrarRadio() {
+  document.getElementById("radioPlayer").style.display = "block";
 }
 </script>
 
