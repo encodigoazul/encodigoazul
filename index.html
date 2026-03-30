@@ -5,6 +5,10 @@
   <title>En Código Azul</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- RADIO PLAYER LIBRERÍA -->
+  <link href="https://cdn.jsdelivr.net/gh/shoutcast/html5-player@latest/player.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/shoutcast/html5-player@latest/player.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -32,27 +36,6 @@
       padding: 20px;
       border-radius: 16px;
       margin-bottom: 30px;
-    }
-
-    .radio-box {
-      background: #132F4C;
-      padding: 20px;
-      border-radius: 16px;
-    }
-
-    button {
-      background: #00AEEF;
-      border: none;
-      padding: 12px 25px;
-      color: white;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background: #008FCC;
     }
 
     iframe {
@@ -87,17 +70,19 @@
   <div class="card">
     <h2>📻 Radio en Vivo</h2>
 
-    <div class="radio-box">
-      <div class="live">🔴 EN VIVO</div>
+    <div class="live">🔴 EN VIVO</div>
 
-      <audio id="radio" controls>
-        <source src="https://cast6.asurahosting.com/proxy/radio_salud_latina/stream" type="audio/mpeg">
-      </audio>
+    <!-- PLAYER UNIVERSAL -->
+    <div id="player"></div>
 
-      <br>
+    <script>
+      new ShoutcastPlayer({
+        element: "player",
+        stream: "https://cast6.asurahosting.com/proxy/radio_salud_latina/stream",
+        autoplay: false
+      });
+    </script>
 
-      <button onclick="activarRadio()">▶️ Activar Radio</button>
-    </div>
   </div>
 
   <!-- PODCAST -->
@@ -118,15 +103,6 @@
 <footer>
   © 2026 En Código Azul
 </footer>
-
-<script>
-function activarRadio() {
-  const radio = document.getElementById("radio");
-  radio.play().catch(() => {
-    alert("Presiona play directamente en el reproductor.");
-  });
-}
-</script>
 
 </body>
 </html>
