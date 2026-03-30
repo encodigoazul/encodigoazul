@@ -49,7 +49,7 @@ audio {
   text-align: left;
   margin-top: 15px;
   font-size: 14px;
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .bar {
@@ -123,9 +123,9 @@ footer {
   <source src="http://cast6.my-control-panel.com:9253/;stream.mp3" type="audio/mpeg">
 </audio>
 
-<div class="song" id="song">Cargando...</div>
+<div class="song" id="song">Cargando canción...</div>
 
-<div class="history" id="history">
+<div class="history">
 <strong>Últimas canciones:</strong>
 <ul id="historyList"></ul>
 </div>
@@ -134,7 +134,7 @@ footer {
 
 <!-- PODCAST -->
 <div class="card">
-<h2>🎧 Podcast</h2>
+<h2>🎧 Podcast En Código Azul</h2>
 
 <iframe 
 src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
@@ -167,19 +167,29 @@ Escríbenos por WhatsApp
 <footer>© 2026 En Código Azul Jorge Luis Vergara Salas</footer>
 
 <script>
-const url = "http://cast6.my-control-panel.com:9253/currentsong?sid=1";
+const url = "http://cast6.my-control-panel.com:9253/7.html";
 
 let historial = [];
 
 async function actualizar() {
   try {
     const res = await fetch(url);
-    const texto = await res.text();
+    const text = await res.text();
 
-    document.getElementById("song").innerText = texto;
+    // SHOUTCAST formato
+    const datos = text.split(",");
 
-    if (!historial.includes(texto)) {
-      historial.unshift(texto);
+    // posición correcta del título (puede variar, este suele funcionar)
+    let cancion = datos[6];
+
+    if (!cancion || cancion === "") {
+      cancion = "🎵 Radio en vivo";
+    }
+
+    document.getElementById("song").innerText = cancion;
+
+    if (!historial.includes(cancion)) {
+      historial.unshift(cancion);
       if (historial.length > 5) historial.pop();
 
       const lista = document.getElementById("historyList");
@@ -192,7 +202,7 @@ async function actualizar() {
       });
     }
 
-  } catch {
+  } catch (error) {
     document.getElementById("song").innerText = "🎵 Radio en vivo";
   }
 }
