@@ -2,117 +2,125 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Radio Salud Latina</title>
+  <title>En Código Azul</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0B1C2C, #132F4C);
       color: white;
       text-align: center;
     }
 
     header {
-      padding: 40px 20px;
+      padding: 30px;
+      font-size: 34px;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00AEEF, #0077B6);
+      letter-spacing: 1px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-
-    p {
-      color: #cbd5f5;
-    }
-
-    .player {
-      margin: 30px auto;
+    .container {
       padding: 20px;
-      background: #020617;
-      border-radius: 20px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.06);
+      padding: 25px;
+      border-radius: 18px;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .live {
+      color: #7CFFB2;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
     }
 
     audio {
       width: 100%;
-      margin-top: 15px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-      background: #22c55e;
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .btn:hover {
-      background: #16a34a;
-    }
-
-    .section {
-      margin: 50px 20px;
+      margin-top: 10px;
     }
 
     iframe {
-      border-radius: 12px;
       width: 100%;
-      max-width: 400px;
-      height: 152px;
+      border-radius: 14px;
+      margin-top: 15px;
+    }
+
+    .spotify-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 18px;
+      background: #1DB954;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
     }
 
     footer {
-      margin-top: 50px;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #94a3b8;
+      margin-top: 40px;
+      padding: 15px;
+      background: #08131F;
+      font-size: 12px;
     }
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>📻 Radio Salud Latina</h1>
-    <p>Temas de salud en lenguaje claro</p>
-  </header>
+<header>
+  🎙️ En Código Azul
+</header>
 
-  <!-- RADIO EN VIVO -->
-  <div class="player">
-    <h2>🔴 En Vivo</h2>
+<div class="container">
 
-    <audio controls autoplay>
-      <source src="https://cast6.asurahosting.com/proxy/radio_salud_latina/stream" type="audio/mpeg">
-      Tu navegador no soporta audio.
+  <!-- RADIO -->
+  <div class="card">
+    <h2>📻 Radio en Vivo</h2>
+    <div class="live">🔴 EN VIVO</div>
+
+    <audio controls>
+      <source src="http://cast6.my-control-panel.com:9253/;stream.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio en vivo.
     </audio>
-
-    <a class="btn" href="https://cast6.asurahosting.com/proxy/radio_salud_latina/stream" target="_blank">
-      ▶ Escuchar en otra pestaña
-    </a>
   </div>
 
   <!-- PODCAST -->
-  <div class="section">
-    <h2>🎙️ Podcast</h2>
-    <p>Escucha nuestros episodios</p>
+  <div class="card">
+    <h2>🎧 Podcast En Código Azul</h2>
 
-    <!-- REEMPLAZA ESTE LINK POR TU SPOTIFY -->
-    <iframe src="https://open.spotify.com/embed/show/TU_PODCAST_ID" 
-            frameborder="0" 
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    <iframe 
+      src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
+      height="352"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
+
+    <a class="spotify-btn" 
+       href="https://open.spotify.com/show/0HUu3XkUTCDn2WqkYugt2l" 
+       target="_blank">
+       Escuchar en Spotify
+    </a>
+
   </div>
 
-  <footer>
-    © 2026 Radio Salud Latina
-  </footer>
+</div>
+
+<footer>
+  © 2026 En Código Azul
+</footer>
 
 </body>
 </html>
