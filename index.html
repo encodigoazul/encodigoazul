@@ -5,10 +5,6 @@
   <title>En Código Azul</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- RADIO PLAYER LIBRERÍA -->
-  <link href="https://cdn.jsdelivr.net/gh/shoutcast/html5-player@latest/player.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/gh/shoutcast/html5-player@latest/player.js"></script>
-
   <style>
     body {
       margin: 0;
@@ -20,9 +16,10 @@
 
     header {
       padding: 25px;
-      font-size: 30px;
+      font-size: 32px;
       font-weight: bold;
       background: #00AEEF;
+      letter-spacing: 1px;
     }
 
     .container {
@@ -33,20 +30,26 @@
 
     .card {
       background: rgba(255,255,255,0.05);
-      padding: 20px;
+      padding: 25px;
       border-radius: 16px;
       margin-bottom: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      margin-bottom: 15px;
     }
 
     iframe {
       border-radius: 12px;
-      margin-top: 15px;
+      margin-top: 10px;
     }
 
     .live {
       color: #7CFFB2;
       font-weight: bold;
       margin-bottom: 10px;
+      font-size: 18px;
     }
 
     footer {
@@ -54,7 +57,9 @@
       padding: 15px;
       background: #08131F;
       font-size: 12px;
+      opacity: 0.8;
     }
+
   </style>
 </head>
 
@@ -69,19 +74,15 @@
   <!-- RADIO -->
   <div class="card">
     <h2>📻 Radio en Vivo</h2>
-
     <div class="live">🔴 EN VIVO</div>
 
-    <!-- PLAYER UNIVERSAL -->
-    <div id="player"></div>
-
-    <script>
-      new ShoutcastPlayer({
-        element: "player",
-        stream: "https://cast6.asurahosting.com/proxy/radio_salud_latina/stream",
-        autoplay: false
-      });
-    </script>
+    <!-- PLAYER OFICIAL (ESTE ES EL QUE NO FALLA) -->
+    <iframe 
+      src="https://cast6.asurahosting.com/public/radio_salud_latina"
+      width="100%" 
+      height="200" 
+      frameborder="0">
+    </iframe>
 
   </div>
 
@@ -96,6 +97,7 @@
       frameborder="0"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
+
   </div>
 
 </div>
