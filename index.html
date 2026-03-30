@@ -8,18 +8,19 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
       background: linear-gradient(135deg, #0B1C2C, #132F4C);
       color: white;
       text-align: center;
     }
 
     header {
-      padding: 25px;
-      font-size: 32px;
+      padding: 30px 20px;
+      font-size: 34px;
       font-weight: bold;
-      background: #00AEEF;
+      background: linear-gradient(90deg, #00AEEF, #0077B6);
       letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
     .container {
@@ -29,27 +30,51 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.06);
       padding: 25px;
-      border-radius: 16px;
+      border-radius: 18px;
       margin-bottom: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+      backdrop-filter: blur(6px);
     }
 
     h2 {
-      margin-bottom: 15px;
-    }
-
-    iframe {
-      border-radius: 12px;
-      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
     .live {
       color: #7CFFB2;
       font-weight: bold;
-      margin-bottom: 10px;
       font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    iframe {
+      border-radius: 14px;
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    .spotify-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 18px;
+      background: #1DB954;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .spotify-btn:hover {
+      background: #1ed760;
     }
 
     footer {
@@ -74,36 +99,37 @@
   <!-- RADIO -->
   <div class="card">
     <h2>📻 Radio en Vivo</h2>
-    <div class="live">🔴 EN VIVO</div>
+    <div class="live">🔴 EN VIVO AHORA</div>
 
-    <!-- PLAYER OFICIAL (ESTE ES EL QUE NO FALLA) -->
-    <iframe 
-      src="https://cast6.asurahosting.com/public/radio_salud_latina"
-      width="100%" 
-      height="200" 
-      frameborder="0">
-    </iframe>
-
+    <audio controls>
+      <source src="http://cast6.my-control-panel.com:9253/;stream.mp3" type="audio/mpeg">
+      Tu navegador no soporta audio en vivo.
+    </audio>
   </div>
 
   <!-- PODCAST -->
   <div class="card">
-    <h2>🎧 Podcast en Spotify</h2>
+    <h2>🎧 Podcast: En Código Azul</h2>
 
     <iframe 
       src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
-      width="100%" 
       height="352"
       frameborder="0"
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
+
+    <a class="spotify-btn" 
+       href="https://open.spotify.com/show/0HUu3XkUTCDn2WqkYugt2l" 
+       target="_blank">
+       Escuchar en Spotify
+    </a>
 
   </div>
 
 </div>
 
 <footer>
-  © 2026 En Código Azul
+  © 2026 En Código Azul · Todos los derechos reservados
 </footer>
 
 </body>
