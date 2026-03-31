@@ -47,7 +47,7 @@ audio {
   max-width: 320px;
 }
 
-/* AUDIENCIA ESTILO PRO */
+/* AUDIENCIA MINIMALISTA */
 .listeners-group {
   display: flex;
   flex-direction: column;
@@ -134,10 +134,10 @@ footer {
 
   <div class="listeners-group">
     <div class="listeners" id="listeners-chile">
-      🇨🇱 Oyentes en línea: --
+      🇨🇱 -- oyentes
     </div>
     <div class="listeners" id="listeners-global">
-      🌎 Oyentes en línea: --
+      🌎 -- oyentes
     </div>
   </div>
 
@@ -225,10 +225,10 @@ function actualizarAudiencia() {
   global = Math.max(minG, Math.min(maxG, global));
 
   document.getElementById("listeners-chile").innerText =
-    "🇨🇱 Oyentes en línea: " + Math.floor(chile);
+    "🇨🇱 " + Math.floor(chile) + " oyentes";
 
   document.getElementById("listeners-global").innerText =
-    "🌎 Oyentes en línea: " + Math.floor(global);
+    "🌎 " + Math.floor(global) + " oyentes";
 }
 
 setInterval(actualizarAudiencia, 120000);
