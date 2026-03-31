@@ -2,237 +2,138 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>En Código Azul</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radio Salud Latina</title>
 
 <style>
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #0B1C2C, #132F4C);
-  color: white;
-  text-align: center;
-}
-
-header {
-  padding: 30px;
-  font-size: 38px;
-  font-weight: bold;
-  background: #00AEEF;
+    font-family: Arial, sans-serif;
+    background-color: #0d1117;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
+    padding: 20px;
 }
 
-.card {
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 25px;
+h1 {
+    font-weight: normal;
 }
 
-/* PLAYER + AUDIENCIA */
-.player-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
+.player {
+    margin: 20px 0;
+}
+
+.oyentes {
+    font-size: 13px;
+    font-weight: 300;
+    color: #c9d1d9;
+    margin-top: 10px;
 }
 
 audio {
-  max-width: 320px;
-}
-
-/* AUDIENCIA MINIMALISTA */
-.listeners-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.listeners {
-  font-size: 13px;
-  font-weight: 300;
-  color: #A8FFD6;
-  background: rgba(0,0,0,0.25);
-  padding: 6px 10px;
-  border-radius: 12px;
-  letter-spacing: 0.5px;
-}
-
-/* BARRAS */
-.bar {
-  display: inline-block;
-  width: 5px;
-  height: 20px;
-  margin: 2px;
-  background: #1DB954;
-  animation: bounce 1s infinite ease-in-out;
-}
-
-.bar:nth-child(2){ animation-delay: 0.2s;}
-.bar:nth-child(3){ animation-delay: 0.4s;}
-.bar:nth-child(4){ animation-delay: 0.6s;}
-.bar:nth-child(5){ animation-delay: 0.8s;}
-
-@keyframes bounce {
-  0%,100% {height: 10px;}
-  50% {height: 30px;}
+    width: 80%;
+    max-width: 400px;
 }
 
 iframe {
-  width: 100%;
-  border-radius: 12px;
-  margin-top: 10px;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 15px;
-  padding: 12px 18px;
-  background: #25D366;
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: bold;
-}
-
-footer {
-  padding: 20px;
-  background: #08131F;
-  font-size: 14px;
+    margin-top: 20px;
+    border-radius: 12px;
 }
 </style>
+
 </head>
 
 <body>
 
-<header>🎙️ En Código Azul</header>
-
 <div class="container">
 
-<div class="card">
-<h2>📻 En Vivo</h2>
+    <h1>🎧 Radio Salud Latina</h1>
 
-<div>
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-</div>
+    <!-- PLAYER -->
+    <div class="player">
+        <audio controls autoplay>
+            <source src="https://cast6.asurahosting.com/proxy/radio_salud_latina/stream" type="audio/mpeg">
+            Tu navegador no soporta audio.
+        </audio>
 
-<div class="player-container">
-
-  <audio controls autoplay>
-    <source src="http://cast6.my-control-panel.com:9253/;stream.mp3" type="audio/mpeg">
-  </audio>
-
-  <div class="listeners-group">
-    <div class="listeners" id="listeners-chile">
-      🇨🇱 -- oyentes
+        <!-- OYENTES -->
+        <div class="oyentes" id="oyentes">
+            🇨🇱 0 oyentes · 🌎 0 oyentes
+        </div>
     </div>
-    <div class="listeners" id="listeners-global">
-      🌎 -- oyentes
-    </div>
-  </div>
+
+    <!-- PODCAST SPOTIFY -->
+    <iframe style="border-radius:12px" 
+        src="https://open.spotify.com/embed/show/XXXXXXXXXXXX" 
+        width="80%" height="152" frameBorder="0" 
+        allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+    </iframe>
 
 </div>
-
-</div>
-
-<div class="card">
-<h2>🎧 Podcast En Código Azul</h2>
-
-<iframe 
-src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
-height="352"
-frameborder="0"
-allow="autoplay; encrypted-media">
-</iframe>
-
-</div>
-
-<div class="card">
-<h2>📲 Contáctanos</h2>
-
-<a class="btn" href="https://wa.me/56977990671" target="_blank">
-📱 WhatsApp: +569 7799 0671
-</a>
-
-</div>
-
-</div>
-
-<footer>
-© 2026 En Código Azul - Jorge Luis Vergara Salas
-</footer>
 
 <script>
 
-const fechaInicio = new Date("2026-03-01");
+// 🔥 VALORES INICIALES ALEATORIOS (para que no se repita)
+let chile = Math.floor(Math.random() * 10) + 5;
+let global = Math.floor(Math.random() * 8) + 3;
 
-let chile = 5;
-let global = 3;
+// 🕐 FUNCIÓN SEGÚN HORA (comportamiento realista)
+function ajustePorHora() {
+    let hora = new Date().getHours();
 
-function crecimientoBase() {
-  let hoy = new Date();
-  let dias = Math.floor((hoy - fechaInicio) / (1000 * 60 * 60 * 24));
-  return Math.min(dias * 0.3, 20);
+    if (hora >= 6 && hora < 12) {
+        chile += 2;
+        global += 3;
+    } else if (hora >= 12 && hora < 18) {
+        chile += 3;
+        global += 4;
+    } else if (hora >= 18 && hora < 23) {
+        chile += 4;
+        global += 5;
+    } else {
+        chile -= 2;
+        global += 3; // más audiencia internacional en la noche
+    }
 }
 
-function rangoChile() {
-  let h = new Date().getHours();
-
-  if (h >= 0 && h < 6) return [2, 5];
-  if (h >= 6 && h < 12) return [4, 10];
-  if (h >= 12 && h < 18) return [8, 15];
-  if (h >= 18 && h < 23) return [12, 25];
-  return [6, 12];
+// 🔄 ACTUALIZAR TEXTO
+function actualizarTexto() {
+    document.getElementById("oyentes").innerHTML =
+        "🇨🇱 " + Math.floor(chile) + " oyentes · 🌎 " + Math.floor(global) + " oyentes";
 }
 
-function rangoGlobal() {
-  let h = new Date().getHours();
+// 🔁 VARIACIÓN SUAVE (cada 20 segundos)
+function variacionSuave() {
+    chile += (Math.random() - 0.5) * 2;
+    global += (Math.random() - 0.5) * 2;
 
-  if (h >= 0 && h < 6) return [6, 14];
-  if (h >= 6 && h < 12) return [5, 10];
-  if (h >= 12 && h < 18) return [4, 9];
-  if (h >= 18 && h < 23) return [6, 12];
-  return [5, 11];
+    // límites mínimos
+    if (chile < 3) chile = 3;
+    if (global < 2) global = 2;
+
+    actualizarTexto();
 }
 
-function actualizarAudiencia() {
+// 🚀 CAMBIO MÁS NOTORIO (cada 2 minutos)
+function cambioFuerte() {
+    ajustePorHora();
 
-  let crecimiento = crecimientoBase();
+    chile += Math.floor(Math.random() * 5) - 2;
+    global += Math.floor(Math.random() * 5) - 2;
 
-  let [minC, maxC] = rangoChile();
-  let [minG, maxG] = rangoGlobal();
+    if (chile < 3) chile = 3;
+    if (global < 2) global = 2;
 
-  minC += crecimiento;
-  maxC += crecimiento;
-
-  minG += crecimiento * 0.8;
-  maxG += crecimiento * 0.8;
-
- chile += Math.floor(Math.random() * 3) - 1;
-global += Math.floor(Math.random() * 3) - 1;
-
-  chile = Math.max(minC, Math.min(maxC, chile));
-  global = Math.max(minG, Math.min(maxG, global));
-
-  document.getElementById("listeners-chile").innerText =
-    "🇨🇱 " + Math.floor(chile) + " oyentes";
-
-  document.getElementById("listeners-global").innerText =
-    "🌎 " + Math.floor(global) + " oyentes";
+    actualizarTexto();
 }
 
-setInterval(actualizarAudiencia, 120000);
-actualizarAudiencia();
+// INICIO
+actualizarTexto();
+setInterval(variacionSuave, 20000);  // cada 20 seg
+setInterval(cambioFuerte, 120000);   // cada 2 min
 
 </script>
 
