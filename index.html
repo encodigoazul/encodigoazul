@@ -34,6 +34,7 @@ header {
   margin-bottom: 25px;
 }
 
+/* PLAYER + AUDIENCIA */
 .player-container {
   display: flex;
   align-items: center;
@@ -46,21 +47,24 @@ audio {
   max-width: 320px;
 }
 
+/* AUDIENCIA ESTILO PRO */
 .listeners-group {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .listeners {
-  font-size: 16px;
-  font-weight: bold;
-  color: #7CFFB2;
-  background: rgba(0,0,0,0.3);
-  padding: 8px 12px;
-  border-radius: 15px;
+  font-size: 13px;
+  font-weight: 300;
+  color: #A8FFD6;
+  background: rgba(0,0,0,0.25);
+  padding: 6px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
 }
 
+/* BARRAS */
 .bar {
   display: inline-block;
   width: 5px;
@@ -129,8 +133,12 @@ footer {
   </audio>
 
   <div class="listeners-group">
-   <div class="listeners" id="listeners-chile">🇨🇱 Chile: --</div>
-<div class="listeners" id="listeners-global">🌎 Otros países: --</div>
+    <div class="listeners" id="listeners-chile">
+      🇨🇱 Oyentes en línea: --
+    </div>
+    <div class="listeners" id="listeners-global">
+      🌎 Oyentes en línea: --
+    </div>
   </div>
 
 </div>
@@ -217,10 +225,10 @@ function actualizarAudiencia() {
   global = Math.max(minG, Math.min(maxG, global));
 
   document.getElementById("listeners-chile").innerText =
-    "🇨🇱 Chile: " + Math.floor(chile);
+    "🇨🇱 Oyentes en línea: " + Math.floor(chile);
 
   document.getElementById("listeners-global").innerText =
-    "🌎 Otros países: " + Math.floor(global);
+    "🌎 Oyentes en línea: " + Math.floor(global);
 }
 
 setInterval(actualizarAudiencia, 120000);
