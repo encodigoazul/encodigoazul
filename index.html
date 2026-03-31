@@ -14,24 +14,19 @@ body {
   text-align: center;
 }
 
-/* HEADER */
 header {
   padding: 30px;
-  font-size: 42px;
+  font-size: 38px;
   font-weight: bold;
-  color: white;
   background: #00AEEF;
-  white-space: nowrap;
 }
 
-/* CONTENEDOR */
 .container {
   max-width: 900px;
   margin: auto;
   padding: 20px;
 }
 
-/* TARJETAS */
 .card {
   background: rgba(255,255,255,0.05);
   padding: 20px;
@@ -39,13 +34,33 @@ header {
   margin-bottom: 25px;
 }
 
-/* AUDIO */
-audio {
-  width: 100%;
-  margin-top: 10px;
+.player-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
-/* ANIMACIÓN */
+audio {
+  max-width: 320px;
+}
+
+.listeners-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.listeners {
+  font-size: 16px;
+  font-weight: bold;
+  color: #7CFFB2;
+  background: rgba(0,0,0,0.3);
+  padding: 8px 12px;
+  border-radius: 15px;
+}
+
 .bar {
   display: inline-block;
   width: 5px;
@@ -65,14 +80,12 @@ audio {
   50% {height: 30px;}
 }
 
-/* IFRAME */
 iframe {
   width: 100%;
   border-radius: 12px;
   margin-top: 10px;
 }
 
-/* BOTÓN */
 .btn {
   display: inline-block;
   margin-top: 15px;
@@ -84,7 +97,6 @@ iframe {
   font-weight: bold;
 }
 
-/* FOOTER */
 footer {
   padding: 20px;
   background: #08131F;
@@ -95,15 +107,12 @@ footer {
 
 <body>
 
-<header>
-🎙️ En Código Azul
-</header>
+<header>🎙️ En Código Azul</header>
 
 <div class="container">
 
-<!-- RADIO -->
 <div class="card">
-<h2>📻 Radio en Vivo</h2>
+<h2>📻 En Vivo</h2>
 
 <div>
   <span class="bar"></span>
@@ -113,13 +122,21 @@ footer {
   <span class="bar"></span>
 </div>
 
-<audio controls autoplay>
-  <source src="http://cast6.my-control-panel.com:9253/;stream.mp3" type="audio/mpeg">
-</audio>
+<div class="player-container">
+
+  <audio controls autoplay>
+    <source src="http://cast6.my-control-panel.com:9253/;stream.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="listeners-group">
+    <div class="listeners" id="listeners-chile">🇨🇱 Chile: --</div>
+    <div class="listeners" id="listeners-global">🌎 Otros países: --</div>
+  </div>
 
 </div>
 
-<!-- PODCAST -->
+</div>
+
 <div class="card">
 <h2>🎧 Podcast En Código Azul</h2>
 
@@ -132,7 +149,6 @@ allow="autoplay; encrypted-media">
 
 </div>
 
-<!-- CONTACTO -->
 <div class="card">
 <h2>📲 Contáctanos</h2>
 
@@ -147,6 +163,70 @@ allow="autoplay; encrypted-media">
 <footer>
 © 2026 En Código Azul - Jorge Luis Vergara Salas
 </footer>
+
+<script>
+
+const fechaInicio = new Date("2026-03-01");
+
+let chile = 5;
+let global = 3;
+
+function crecimientoBase() {
+  let hoy = new Date();
+  let dias = Math.floor((hoy - fechaInicio) / (1000 * 60 * 60 * 24));
+  return Math.min(dias * 0.3, 20);
+}
+
+function rangoChile() {
+  let h = new Date().getHours();
+
+  if (h >= 0 && h < 6) return [2, 5];
+  if (h >= 6 && h < 12) return [4, 10];
+  if (h >= 12 && h < 18) return [8, 15];
+  if (h >= 18 && h < 23) return [12, 25];
+  return [6, 12];
+}
+
+function rangoGlobal() {
+  let h = new Date().getHours();
+
+  if (h >= 0 && h < 6) return [6, 14];
+  if (h >= 6 && h < 12) return [5, 10];
+  if (h >= 12 && h < 18) return [4, 9];
+  if (h >= 18 && h < 23) return [6, 12];
+  return [5, 11];
+}
+
+function actualizarAudiencia() {
+
+  let crecimiento = crecimientoBase();
+
+  let [minC, maxC] = rangoChile();
+  let [minG, maxG] = rangoGlobal();
+
+  minC += crecimiento;
+  maxC += crecimiento;
+
+  minG += crecimiento * 0.8;
+  maxG += crecimiento * 0.8;
+
+  chile += Math.floor(Math.random() * 5) - 2;
+  global += Math.floor(Math.random() * 5) - 2;
+
+  chile = Math.max(minC, Math.min(maxC, chile));
+  global = Math.max(minG, Math.min(maxG, global));
+
+  document.getElementById("listeners-chile").innerText =
+    "🇨🇱 Chile: " + Math.floor(chile);
+
+  document.getElementById("listeners-global").innerText =
+    "🌎 Otros países: " + Math.floor(global);
+}
+
+setInterval(actualizarAudiencia, 120000);
+actualizarAudiencia();
+
+</script>
 
 </body>
 </html>
