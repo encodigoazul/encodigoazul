@@ -15,28 +15,51 @@ body {
 
 /* HEADER */
 header {
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    background: #0a1f44;
-    border-bottom: 1px solid #3b82f6;
+    text-align: center;
+    padding: 25px 15px 10px;
 }
 
-header img {
-    width: 42px;
-    margin-right: 10px;
+/* LOGO ANIMADO */
+.logo {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 20px;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: fadeZoom 1.5s ease forwards, glow 3s infinite ease-in-out;
+}
+
+/* Animación entrada */
+@keyframes fadeZoom {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Brillo tecnológico */
+@keyframes glow {
+    0%,100% {
+        box-shadow: 0 0 10px rgba(59,130,246,0.3);
+    }
+    50% {
+        box-shadow: 0 0 25px rgba(96,165,250,0.7);
+    }
 }
 
 header h1 {
-    font-size: 20px;
-    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+    margin: 10px 0 5px;
 }
 
 /* TAGLINE */
 .tagline {
-    font-size: 13px;
-    padding: 5px 15px 10px;
-    color: #c7d2fe;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #dbeafe;
+    margin-bottom: 10px;
 }
 
 /* CONTAINER */
@@ -82,7 +105,6 @@ h2 {
     50% {height:25px;}
 }
 
-/* PLAYER */
 audio {
     width: 100%;
 }
@@ -93,7 +115,6 @@ audio {
     justify-content: space-between;
     margin-top: 10px;
     font-size: 13px;
-    color: #dbeafe;
 }
 
 /* WHATSAPP */
@@ -106,7 +127,6 @@ audio {
     padding: 14px 16px;
     border-radius: 50px;
     text-decoration: none;
-    font-size: 14px;
 }
 
 /* FOOTER */
@@ -122,8 +142,11 @@ audio {
 <body>
 
 <header>
-<img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
+
+<img src="logo.jpg" class="logo">
+
 <h1>En Código Azul</h1>
+
 </header>
 
 <div class="tagline">
@@ -187,11 +210,10 @@ WhatsApp
 </div>
 
 <script>
-// Variables base
+// Oyentes realistas
 let cl = 5;
 let world = 10;
 
-// Simula crecimiento suave
 function actualizarOyentes() {
     const hora = new Date().getHours();
 
@@ -200,25 +222,20 @@ function actualizarOyentes() {
     if (hora >= 7 && hora < 12) {
         clMin = 3; clMax = 12;
         worldMin = 5; worldMax = 20;
-    } 
-    else if (hora >= 12 && hora < 19) {
+    } else if (hora >= 12 && hora < 19) {
         clMin = 5; clMax = 18;
         worldMin = 8; worldMax = 30;
-    } 
-    else if (hora >= 19 || hora < 2) {
+    } else if (hora >= 19 || hora < 2) {
         clMin = 8; clMax = 25;
         worldMin = 12; worldMax = 40;
-    } 
-    else {
+    } else {
         clMin = 1; clMax = 6;
         worldMin = 3; worldMax = 12;
     }
 
-    // Cambio suave (no saltos)
     cl += Math.floor(Math.random() * 3) - 1;
     world += Math.floor(Math.random() * 3) - 1;
 
-    // Mantener dentro de rango
     cl = Math.max(clMin, Math.min(clMax, cl));
     world = Math.max(worldMin, Math.min(worldMax, world));
 
@@ -226,30 +243,25 @@ function actualizarOyentes() {
     document.getElementById("world").innerText = world;
 }
 
-// Simula "entrada de usuario"
 function nuevaVisita() {
     cl += 1;
     world += 2;
 }
 
-// Fondo dinámico según hora
 function cambiarFondo() {
     const hora = new Date().getHours();
 
     if (hora >= 7 && hora < 18) {
         document.body.style.background = "linear-gradient(180deg, #1e3a8a, #2563eb)";
-    } 
-    else {
+    } else {
         document.body.style.background = "linear-gradient(180deg, #0a1f44, #020617)";
     }
 }
 
-// Inicial
 cambiarFondo();
 actualizarOyentes();
 nuevaVisita();
 
-// Intervalos
 setInterval(actualizarOyentes, 20000);
 setInterval(cambiarFondo, 60000);
 </script>
