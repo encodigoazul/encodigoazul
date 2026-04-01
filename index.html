@@ -8,44 +8,48 @@
 <style>
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(180deg, #0d1117, #161b22);
-    color: white;
+    background-color: #f4f6f8; /* 👈 color claro como antes */
+    color: #111;
     text-align: center;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    padding: 20px;
+    padding: 15px 10px; /* 👈 menos espacio */
 }
 
 h1 {
     font-weight: 400;
-    letter-spacing: 1px;
+    margin-bottom: 10px;
 }
 
 .player {
-    margin: 25px 0;
+    margin: 10px 0; /* 👈 más compacto */
 }
 
 .oyentes {
     font-size: 12px;
     font-weight: 300;
-    color: #c9d1d9;
-    margin-top: 8px;
-    opacity: 0.85;
+    color: #555;
+    margin-top: 5px;
 }
 
 audio {
     width: 85%;
     max-width: 420px;
-    border-radius: 10px;
 }
 
 iframe {
-    margin-top: 25px;
+    margin-top: 10px; /* 👈 sube el podcast */
     border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.footer {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #666;
+    opacity: 0.8;
 }
 </style>
 
@@ -71,21 +75,26 @@ iframe {
     </div>
 
     <!-- PODCAST -->
-    <iframe style="border-radius:12px" 
+    <iframe 
         src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l" 
         width="85%" height="152" frameborder="0"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
 
+    <!-- FOOTER -->
+    <div class="footer">
+        En Código Azul® 2026 – Jorge Luis Vergara Salas
+    </div>
+
 </div>
 
 <script>
 
-// 🔥 INICIO MÁS NATURAL (evita números repetidos)
+// 🔥 INICIO ALEATORIO
 let chile = Math.floor(Math.random() * 12) + 4;
 let global = Math.floor(Math.random() * 10) + 3;
 
-// 🕐 PATRÓN REALISTA SEGÚN HORA
+// 🕐 AJUSTE HORARIO
 function ajustePorHora() {
     let hora = new Date().getHours();
 
@@ -100,17 +109,17 @@ function ajustePorHora() {
         global += 4;
     } else {
         chile -= 1.5;
-        global += 3.5; // 🌎 sube en la noche
+        global += 3.5;
     }
 }
 
-// 🔄 ACTUALIZA VISUAL
+// 🔄 ACTUALIZAR TEXTO
 function actualizarTexto() {
     document.getElementById("oyentes").innerHTML =
         "🇨🇱 " + Math.floor(chile) + " oyentes · 🌎 " + Math.floor(global) + " oyentes";
 }
 
-// 🔁 MICRO VARIACIONES (movimiento constante)
+// 🔁 VARIACIÓN SUAVE
 function variacionSuave() {
     chile += (Math.random() - 0.5) * 1.5;
     global += (Math.random() - 0.5) * 1.5;
@@ -121,7 +130,7 @@ function variacionSuave() {
     actualizarTexto();
 }
 
-// 🚀 CAMBIOS MÁS VISIBLES
+// 🚀 CAMBIO MÁS FUERTE
 function cambioFuerte() {
     ajustePorHora();
 
@@ -134,12 +143,10 @@ function cambioFuerte() {
     actualizarTexto();
 }
 
-// 🎯 ARRANQUE
+// INICIO
 actualizarTexto();
-
-// 🔁 INTERVALOS
-setInterval(variacionSuave, 15000);   // cada 15 seg
-setInterval(cambioFuerte, 90000);     // cada 1.5 min
+setInterval(variacionSuave, 15000);
+setInterval(cambioFuerte, 90000);
 
 </script>
 
