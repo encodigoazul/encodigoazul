@@ -8,7 +8,7 @@
 <style>
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f6f8; /* 👈 color claro como antes */
+    background-color: #f4f6f8;
     color: #111;
     text-align: center;
     margin: 0;
@@ -16,7 +16,7 @@ body {
 }
 
 .container {
-    padding: 15px 10px; /* 👈 menos espacio */
+    padding: 15px 10px;
 }
 
 h1 {
@@ -25,7 +25,7 @@ h1 {
 }
 
 .player {
-    margin: 10px 0; /* 👈 más compacto */
+    margin: 10px 0;
 }
 
 .oyentes {
@@ -40,9 +40,19 @@ audio {
     max-width: 420px;
 }
 
+/* 🔥 MEJOR VISUAL PARA PODCAST */
+.podcast {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
 iframe {
-    margin-top: 10px; /* 👈 sube el podcast */
+    width: 85%;
+    max-width: 420px;
+    height: 152px;
     border-radius: 12px;
+    border: none;
 }
 
 .footer {
@@ -74,12 +84,13 @@ iframe {
         </div>
     </div>
 
-    <!-- PODCAST -->
-    <iframe 
-        src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l" 
-        width="85%" height="152" frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-    </iframe>
+    <!-- 🎙️ PODCAST (AHORA SÍ VISIBLE) -->
+    <div class="podcast">
+        <iframe 
+            src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l?utm_source=generator"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+    </div>
 
     <!-- FOOTER -->
     <div class="footer">
