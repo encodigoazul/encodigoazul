@@ -9,8 +9,8 @@
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    background: linear-gradient(180deg, #020617, #0f172a);
-    color: #e2e8f0;
+    color: #e0ecff;
+    transition: background 1s ease;
 }
 
 /* HEADER */
@@ -18,8 +18,8 @@ header {
     display: flex;
     align-items: center;
     padding: 12px 15px;
-    background: #020617;
-    border-bottom: 1px solid #1e293b;
+    background: #0a1f44;
+    border-bottom: 1px solid #3b82f6;
 }
 
 header img {
@@ -35,8 +35,8 @@ header h1 {
 /* TAGLINE */
 .tagline {
     font-size: 13px;
-    padding: 5px 15px 10px 15px;
-    color: #94a3b8;
+    padding: 5px 15px 10px;
+    color: #c7d2fe;
 }
 
 /* CONTAINER */
@@ -46,18 +46,18 @@ header h1 {
 
 /* CARD */
 .card {
-    background: #020617;
+    background: #142f6e;
     border-radius: 16px;
     padding: 15px;
     margin-bottom: 18px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 /* TITLES */
 h2 {
     font-size: 15px;
     margin-bottom: 10px;
-    color: #38bdf8;
+    color: #93c5fd;
 }
 
 /* EQUALIZER */
@@ -69,7 +69,7 @@ h2 {
 .bar {
     width: 4px;
     height: 10px;
-    background: #38bdf8;
+    background: #60a5fa;
     border-radius: 2px;
     animation: bounce 1s infinite ease-in-out;
 }
@@ -93,7 +93,7 @@ audio {
     justify-content: space-between;
     margin-top: 10px;
     font-size: 13px;
-    color: #cbd5f5;
+    color: #dbeafe;
 }
 
 /* WHATSAPP */
@@ -114,7 +114,7 @@ audio {
     text-align: center;
     font-size: 11px;
     padding: 15px;
-    color: #64748b;
+    color: #bfdbfe;
 }
 </style>
 </head>
@@ -148,17 +148,17 @@ El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienes
 </audio>
 
 <div class="listeners">
-<span>🇨🇱 Chile: <span id="cl">135</span></span>
-<span>🌎 Mundo: <span id="world">420</span></span>
+<span>🇨🇱 Chile: <span id="cl">5</span></span>
+<span>🌎 Mundo: <span id="world">10</span></span>
 </div>
 </div>
 
-<!-- SPOTIFY -->
+<!-- PODCAST -->
 <div class="card">
 <h2>🎙️ Podcast</h2>
 
 <iframe style="border-radius:12px"
-src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l?utm_source=generator"
+src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
 width="100%" height="352" frameborder="0"
 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
 loading="lazy">
@@ -166,7 +166,7 @@ loading="lazy">
 
 </div>
 
-<!-- STORIES -->
+<!-- HISTORIAS -->
 <div class="card">
 <h2>💬 Historias en Código Azul</h2>
 <p>¿Cómo fue tu primer día trabajando en salud?</p>
@@ -187,10 +187,71 @@ WhatsApp
 </div>
 
 <script>
-setInterval(() => {
-document.getElementById("cl").innerText = Math.floor(Math.random()*50)+100;
-document.getElementById("world").innerText = Math.floor(Math.random()*200)+300;
-}, 4000);
+// Variables base
+let cl = 5;
+let world = 10;
+
+// Simula crecimiento suave
+function actualizarOyentes() {
+    const hora = new Date().getHours();
+
+    let clMin, clMax, worldMin, worldMax;
+
+    if (hora >= 7 && hora < 12) {
+        clMin = 3; clMax = 12;
+        worldMin = 5; worldMax = 20;
+    } 
+    else if (hora >= 12 && hora < 19) {
+        clMin = 5; clMax = 18;
+        worldMin = 8; worldMax = 30;
+    } 
+    else if (hora >= 19 || hora < 2) {
+        clMin = 8; clMax = 25;
+        worldMin = 12; worldMax = 40;
+    } 
+    else {
+        clMin = 1; clMax = 6;
+        worldMin = 3; worldMax = 12;
+    }
+
+    // Cambio suave (no saltos)
+    cl += Math.floor(Math.random() * 3) - 1;
+    world += Math.floor(Math.random() * 3) - 1;
+
+    // Mantener dentro de rango
+    cl = Math.max(clMin, Math.min(clMax, cl));
+    world = Math.max(worldMin, Math.min(worldMax, world));
+
+    document.getElementById("cl").innerText = cl;
+    document.getElementById("world").innerText = world;
+}
+
+// Simula "entrada de usuario"
+function nuevaVisita() {
+    cl += 1;
+    world += 2;
+}
+
+// Fondo dinámico según hora
+function cambiarFondo() {
+    const hora = new Date().getHours();
+
+    if (hora >= 7 && hora < 18) {
+        document.body.style.background = "linear-gradient(180deg, #1e3a8a, #2563eb)";
+    } 
+    else {
+        document.body.style.background = "linear-gradient(180deg, #0a1f44, #020617)";
+    }
+}
+
+// Inicial
+cambiarFondo();
+actualizarOyentes();
+nuevaVisita();
+
+// Intervalos
+setInterval(actualizarOyentes, 20000);
+setInterval(cambiarFondo, 60000);
 </script>
 
 </body>
