@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>En Código Azul</title>
+<title>En Código Azul Radio</title>
 
 <style>
 body {
@@ -19,7 +19,18 @@ header {
     padding: 25px 15px 10px;
 }
 
-/* LOGO ANIMADO */
+/* 🔴 EN VIVO */
+.live {
+    color: #ff4d4d;
+    font-weight: bold;
+    animation: blink 1.2s infinite;
+}
+@keyframes blink {
+    0%,100% {opacity:1;}
+    50% {opacity:0.4;}
+}
+
+/* LOGO */
 .logo {
     width: 100%;
     max-width: 320px;
@@ -29,22 +40,12 @@ header {
     animation: fadeZoom 1.5s ease forwards, glow 3s infinite ease-in-out;
 }
 
-/* Animación entrada */
 @keyframes fadeZoom {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+    to {opacity:1; transform:scale(1);}
 }
-
-/* Brillo tecnológico */
 @keyframes glow {
-    0%,100% {
-        box-shadow: 0 0 10px rgba(59,130,246,0.3);
-    }
-    50% {
-        box-shadow: 0 0 25px rgba(96,165,250,0.7);
-    }
+    0%,100% {box-shadow:0 0 10px rgba(59,130,246,0.3);}
+    50% {box-shadow:0 0 25px rgba(96,165,250,0.7);}
 }
 
 header h1 {
@@ -53,21 +54,17 @@ header h1 {
     margin: 10px 0 5px;
 }
 
-/* TAGLINE */
 .tagline {
     text-align: center;
     font-size: 14px;
-    font-weight: 500;
     color: #dbeafe;
     margin-bottom: 10px;
 }
 
-/* CONTAINER */
 .container {
     padding: 15px;
 }
 
-/* CARD */
 .card {
     background: #142f6e;
     border-radius: 16px;
@@ -76,14 +73,12 @@ header h1 {
     box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
-/* TITLES */
 h2 {
     font-size: 15px;
     margin-bottom: 10px;
     color: #93c5fd;
 }
 
-/* EQUALIZER */
 .equalizer {
     display: flex;
     gap: 4px;
@@ -109,6 +104,13 @@ audio {
     width: 100%;
 }
 
+/* STATUS RADIO */
+.status {
+    font-size: 12px;
+    color: #c7d2fe;
+    margin-top: 5px;
+}
+
 /* LISTENERS */
 .listeners {
     display: flex;
@@ -127,6 +129,7 @@ audio {
     padding: 14px 16px;
     border-radius: 50px;
     text-decoration: none;
+    font-weight: bold;
 }
 
 /* FOOTER */
@@ -142,11 +145,9 @@ audio {
 <body>
 
 <header>
-
 <img src="logo.jpg" class="logo">
-
-<h1>En Código Azul</h1>
-
+<h1>🎧 En Código Azul Radio</h1>
+<div class="live">🔴 EN VIVO AHORA</div>
 </header>
 
 <div class="tagline">
@@ -166,9 +167,13 @@ El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienes
 <div class="bar"></div>
 </div>
 
-<audio controls>
+<audio id="radio" controls>
 <source src="https://cast6.asurahosting.com/proxy/radio_salud_latina/stream" type="audio/mpeg">
 </audio>
+
+<div class="status">
+Estás escuchando En Código Azul Radio en vivo
+</div>
 
 <div class="listeners">
 <span>🇨🇱 Chile: <span id="cl">5</span></span>
@@ -182,9 +187,8 @@ El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienes
 
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
-width="100%" height="352" frameborder="0"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-loading="lazy">
+width="100%" height="352"
+allow="autoplay; encrypted-media">
 </iframe>
 
 </div>
@@ -202,42 +206,34 @@ loading="lazy">
 </div>
 
 <a class="whatsapp" href="https://wa.me/56977990671" target="_blank">
-WhatsApp
+💬 WhatsApp
 </a>
 
 <div class="footer">
-© 2026 En Código Azul
+© 2026 En Código Azul Radio
 </div>
 
 <script>
-// Oyentes realistas
+
+// AUTOPLAY INTELIGENTE
+window.addEventListener("load", () => {
+    let audio = document.getElementById("radio");
+    let p = audio.play();
+    if (p !== undefined) {
+        p.catch(()=>{});
+    }
+});
+
+// OYENTES
 let cl = 5;
 let world = 10;
 
 function actualizarOyentes() {
-    const hora = new Date().getHours();
+    cl += Math.floor(Math.random()*3)-1;
+    world += Math.floor(Math.random()*3)-1;
 
-    let clMin, clMax, worldMin, worldMax;
-
-    if (hora >= 7 && hora < 12) {
-        clMin = 3; clMax = 12;
-        worldMin = 5; worldMax = 20;
-    } else if (hora >= 12 && hora < 19) {
-        clMin = 5; clMax = 18;
-        worldMin = 8; worldMax = 30;
-    } else if (hora >= 19 || hora < 2) {
-        clMin = 8; clMax = 25;
-        worldMin = 12; worldMax = 40;
-    } else {
-        clMin = 1; clMax = 6;
-        worldMin = 3; worldMax = 12;
-    }
-
-    cl += Math.floor(Math.random() * 3) - 1;
-    world += Math.floor(Math.random() * 3) - 1;
-
-    cl = Math.max(clMin, Math.min(clMax, cl));
-    world = Math.max(worldMin, Math.min(worldMax, world));
+    cl = Math.max(3, cl);
+    world = Math.max(5, world);
 
     document.getElementById("cl").innerText = cl;
     document.getElementById("world").innerText = world;
@@ -248,9 +244,9 @@ function nuevaVisita() {
     world += 2;
 }
 
+// FONDO
 function cambiarFondo() {
     const hora = new Date().getHours();
-
     if (hora >= 7 && hora < 18) {
         document.body.style.background = "linear-gradient(180deg, #1e3a8a, #2563eb)";
     } else {
@@ -264,6 +260,7 @@ nuevaVisita();
 
 setInterval(actualizarOyentes, 20000);
 setInterval(cambiarFondo, 60000);
+
 </script>
 
 </body>
