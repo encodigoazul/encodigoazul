@@ -16,69 +16,69 @@ body {
 /* HEADER */
 header {
     text-align: center;
-    padding: 25px 15px 10px;
-}
-
-/* 🔴 EN VIVO */
-.live {
-    color: #ff4d4d;
-    font-weight: bold;
-    animation: blink 1.2s infinite;
-}
-@keyframes blink {
-    0%,100% {opacity:1;}
-    50% {opacity:0.4;}
-}
-
-/* LOGO */
-.logo {
-    width: 100%;
-    max-width: 320px;
-    border-radius: 20px;
-    opacity: 0;
-    transform: scale(0.9);
-    animation: fadeZoom 1.5s ease forwards, glow 3s infinite ease-in-out;
-}
-
-@keyframes fadeZoom {
-    to {opacity:1; transform:scale(1);}
-}
-@keyframes glow {
-    0%,100% {box-shadow:0 0 10px rgba(59,130,246,0.3);}
-    50% {box-shadow:0 0 25px rgba(96,165,250,0.7);}
+    padding: 30px 15px 10px;
 }
 
 header h1 {
-    font-size: 26px;
-    font-weight: 800;
-    margin: 10px 0 5px;
+    font-size: 28px;
+    font-weight: 900;
+    margin: 10px 0;
 }
 
-.tagline {
-    text-align: center;
-    font-size: 14px;
-    color: #dbeafe;
-    margin-bottom: 10px;
+/* 🔴 EN VIVO MEJORADO */
+.live {
+    color: #ff2d2d;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 1px;
+    animation: blink 1s infinite, glowText 2s infinite;
 }
 
+@keyframes blink {
+    0%,100% {opacity:1;}
+    50% {opacity:0.3;}
+}
+
+@keyframes glowText {
+    0%,100% {text-shadow: 0 0 5px #ff2d2d;}
+    50% {text-shadow: 0 0 20px #ff2d2d;}
+}
+
+/* CONTENIDO */
 .container {
     padding: 15px;
 }
 
 .card {
     background: #142f6e;
-    border-radius: 16px;
-    padding: 15px;
+    border-radius: 18px;
+    padding: 18px;
     margin-bottom: 18px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.35);
 }
 
+/* TITULOS */
 h2 {
-    font-size: 15px;
-    margin-bottom: 10px;
+    font-size: 16px;
+    margin-bottom: 12px;
     color: #93c5fd;
 }
 
+/* PODCAST DESTACADO */
+.podcast-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* FRASE REUBICADA */
+.tagline {
+    font-size: 14px;
+    color: #dbeafe;
+    margin-bottom: 12px;
+}
+
+/* ECUALIZADOR */
 .equalizer {
     display: flex;
     gap: 4px;
@@ -104,14 +104,14 @@ audio {
     width: 100%;
 }
 
-/* STATUS RADIO */
+/* STATUS */
 .status {
     font-size: 12px;
     color: #c7d2fe;
     margin-top: 5px;
 }
 
-/* LISTENERS */
+/* OYENTES */
 .listeners {
     display: flex;
     justify-content: space-between;
@@ -130,6 +130,7 @@ audio {
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 /* FOOTER */
@@ -145,14 +146,9 @@ audio {
 <body>
 
 <header>
-<img src="logo.jpg" class="logo">
 <h1>🎧 En Código Azul Radio</h1>
 <div class="live">🔴 EN VIVO AHORA</div>
 </header>
-
-<div class="tagline">
-El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienestar
-</div>
 
 <div class="container">
 
@@ -183,7 +179,11 @@ Estás escuchando En Código Azul Radio en vivo
 
 <!-- PODCAST -->
 <div class="card">
-<h2>🎙️ Podcast</h2>
+<div class="podcast-title">🎙️ Podcast</div>
+
+<div class="tagline">
+El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienestar
+</div>
 
 <iframe style="border-radius:12px"
 src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
@@ -244,7 +244,7 @@ function nuevaVisita() {
     world += 2;
 }
 
-// FONDO
+// FONDO DINÁMICO
 function cambiarFondo() {
     const hora = new Date().getHours();
     if (hora >= 7 && hora < 18) {
