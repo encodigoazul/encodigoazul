@@ -6,193 +6,211 @@
 <title>En Código Azul Radio</title>
 
 <style>
+*{box-sizing:border-box;}
 
-/* RESET */
-* {
-    box-sizing: border-box;
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(180deg,#0a1f44,#020617);
+    color:#e0ecff;
 }
 
-/* BODY */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #0a1f44, #020617);
-    color: #e0ecff;
+/* CONTENEDOR */
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:20px;
 }
 
-/* CONTENEDOR CENTRAL (clave pro) */
-.container {
-    max-width: 850px;
-    margin: auto;
-    padding: 20px;
+/* HEADER */
+header{
+    text-align:center;
+    padding:40px 20px;
+    background:linear-gradient(180deg,#0f2a5c,#0a1f44);
+    box-shadow:0 6px 25px rgba(0,0,0,0.5);
 }
 
-/* HEADER PRO */
-header {
-    text-align: center;
-    padding: 40px 20px 25px;
-    background: linear-gradient(180deg, #0f2a5c, #0a1f44);
-    box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+header h1{
+    margin:0;
+    font-size:30px;
+    font-weight:900;
 }
 
-header h1 {
-    font-size: 30px;
-    font-weight: 900;
-    margin: 0;
+/* EN VIVO */
+.live{
+    margin-top:8px;
+    font-size:22px;
+    font-weight:900;
+    color:#ff2d2d;
+    animation:blink 1s infinite,glow 2s infinite;
 }
 
-/* EN VIVO PRO */
-.live {
-    margin-top: 8px;
-    font-size: 22px;
-    font-weight: 900;
-    color: #ff2d2d;
-    animation: blink 1s infinite, glow 2s infinite;
+@keyframes blink{
+    0%,100%{opacity:1;}
+    50%{opacity:0.3;}
 }
 
-@keyframes blink {
-    0%,100% {opacity:1;}
-    50% {opacity:0.3;}
+@keyframes glow{
+    0%,100%{text-shadow:0 0 5px #ff2d2d;}
+    50%{text-shadow:0 0 20px #ff2d2d;}
 }
 
-@keyframes glow {
-    0%,100% {text-shadow:0 0 5px #ff2d2d;}
-    50% {text-shadow:0 0 20px #ff2d2d;}
-}
-
-/* TARJETAS */
-.card {
-    background: #142f6e;
-    border-radius: 20px;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: translateY(-3px);
-}
-
-/* TITULOS */
-h2 {
-    margin: 0 0 12px;
-    font-size: 16px;
-    color: #93c5fd;
+/* CARD */
+.card{
+    background:#142f6e;
+    border-radius:20px;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.4);
 }
 
 /* RADIO */
-.player {
-    text-align: center;
-}
+.player{text-align:center;}
 
-audio {
-    width: 100%;
-    max-width: 500px;
-    margin: 10px auto;
-    display: block;
-    border-radius: 10px;
+audio{
+    width:100%;
+    max-width:500px;
+    margin:10px auto;
+    display:block;
 }
 
 /* ECUALIZADOR */
-.equalizer {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 10px;
+.equalizer{
+    display:flex;
+    justify-content:center;
+    gap:5px;
+    margin-bottom:10px;
 }
 
-.bar {
-    width: 4px;
-    height: 10px;
-    background: #60a5fa;
-    border-radius: 2px;
-    animation: bounce 1s infinite;
+.bar{
+    width:4px;
+    height:10px;
+    background:#60a5fa;
+    animation:bounce 1s infinite;
 }
-
 .bar:nth-child(2){animation-delay:.2s;}
 .bar:nth-child(3){animation-delay:.4s;}
 .bar:nth-child(4){animation-delay:.6s;}
 
-@keyframes bounce {
-    0%,100% {height:10px;}
-    50% {height:25px;}
-}
-
-/* STATUS */
-.status {
-    font-size: 13px;
-    color: #c7d2fe;
+@keyframes bounce{
+    0%,100%{height:10px;}
+    50%{height:25px;}
 }
 
 /* OYENTES */
-.listeners {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    font-size: 13px;
+.listeners{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+    font-size:13px;
 }
 
-/* PODCAST PRO */
-.podcast-title {
-    font-size: 20px;
-    font-weight: 900;
-    margin-bottom: 5px;
+/* PODCAST */
+.podcast-title{
+    font-size:20px;
+    font-weight:900;
 }
 
-.tagline {
-    font-size: 14px;
-    color: #dbeafe;
-    margin-bottom: 10px;
+.tagline{
+    font-size:14px;
+    margin-bottom:10px;
 }
 
-iframe {
-    width: 100%;
-    border-radius: 14px;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+/* CARRUSEL */
+.carousel{
+    position:relative;
+    overflow:hidden;
 }
 
-/* HISTORIAS */
-.card p {
-    margin: 6px 0;
-    font-size: 14px;
+.carousel-track{
+    display:flex;
+    gap:15px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
 }
 
-/* WHATSAPP PRO */
-.whatsapp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #25D366;
-    color: white;
-    padding: 14px 18px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-    transition: transform 0.2s;
+.carousel-track::-webkit-scrollbar{
+    display:none;
 }
 
-.whatsapp:hover {
-    transform: scale(1.05);
+/* TARJETA PODCAST */
+.podcast-card{
+    min-width:250px;
+    border-radius:16px;
+    overflow:hidden;
+    position:relative;
+    flex-shrink:0;
+}
+
+.podcast-card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:70%;
+    background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
+}
+
+/* TEXTO */
+.podcast-info{
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    right:10px;
+}
+
+.podcast-name{
+    font-size:14px;
+    font-weight:800;
+    color:white;
+}
+
+.podcast-meta{
+    font-size:11px;
+    color:#cbd5f5;
+}
+
+/* BOTONES */
+.carousel-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    border:none;
+    color:white;
+    font-size:20px;
+    padding:10px;
+    cursor:pointer;
+    border-radius:50%;
+}
+
+.prev{left:5px;}
+.next{right:5px;}
+
+/* WHATSAPP */
+.whatsapp{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:14px 18px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 /* FOOTER */
-.footer {
-    text-align: center;
-    font-size: 11px;
-    padding: 20px;
-    color: #bfdbfe;
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 24px;
-    }
-    .live {
-        font-size: 18px;
-    }
+.footer{
+    text-align:center;
+    font-size:11px;
+    padding:20px;
 }
 
 </style>
@@ -212,19 +230,14 @@ iframe {
 <h2>🎧 Radio en vivo</h2>
 
 <div class="equalizer">
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
+<div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
 </div>
 
 <audio id="radio" controls>
 <source src="https://cast6.asurahosting.com/proxy/radio_salud_latina/stream" type="audio/mpeg">
 </audio>
 
-<div class="status">
-Estás escuchando En Código Azul Radio en vivo
-</div>
+<div>Estás escuchando En Código Azul Radio en vivo</div>
 
 <div class="listeners">
 <span>🇨🇱 Chile: <span id="cl">5</span></span>
@@ -240,10 +253,46 @@ Estás escuchando En Código Azul Radio en vivo
 El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienestar
 </div>
 
-<iframe height="352"
-src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
-allow="autoplay; encrypted-media">
-</iframe>
+<div class="carousel">
+<button class="carousel-btn prev" onclick="scrollCarousel(-1)">❮</button>
+
+<div class="carousel-track" id="track">
+
+<!-- ITEM 1 -->
+<div class="podcast-card">
+<img src="https://i.imgur.com/8Km9tLL.jpg">
+<div class="overlay"></div>
+<div class="podcast-info">
+<div class="podcast-name">Entrevista a Ernestina Parada Leiva</div>
+<div class="podcast-meta">9 abr • En Código Azul</div>
+</div>
+</div>
+
+<!-- ITEM 2 -->
+<div class="podcast-card">
+<img src="https://i.imgur.com/9Xn4K8g.jpg">
+<div class="overlay"></div>
+<div class="podcast-info">
+<div class="podcast-name">Salud mental en enfermería</div>
+<div class="podcast-meta">5 abr • En Código Azul</div>
+</div>
+</div>
+
+<!-- ITEM 3 -->
+<div class="podcast-card">
+<img src="https://i.imgur.com/Y3G6Q6b.jpg">
+<div class="overlay"></div>
+<div class="podcast-info">
+<div class="podcast-name">Experiencias en urgencias</div>
+<div class="podcast-meta">2 abr • En Código Azul</div>
+</div>
+</div>
+
+</div>
+
+<button class="carousel-btn next" onclick="scrollCarousel(1)">❯</button>
+</div>
+
 </div>
 
 <!-- HISTORIAS -->
@@ -253,7 +302,6 @@ allow="autoplay; encrypted-media">
 <p>¿Cuál ha sido tu experiencia más reconfortante?</p>
 <p>¿Y la más difícil?</p>
 <p>¿Qué historia te marcó como profesional?</p>
-<p>Comparte tu experiencia con nosotros.</p>
 </div>
 
 </div>
@@ -268,49 +316,31 @@ allow="autoplay; encrypted-media">
 
 <script>
 
-// AUTOPLAY (puede bloquearse en algunos navegadores)
-window.addEventListener("load", () => {
-    let audio = document.getElementById("radio");
-    let p = audio.play();
-    if (p !== undefined) p.catch(()=>{});
+// AUTOPLAY
+window.addEventListener("load",()=>{
+let a=document.getElementById("radio");
+let p=a.play();
+if(p!==undefined)p.catch(()=>{});
 });
 
-// OYENTES DINÁMICOS
-let cl = 5;
-let world = 10;
+// OYENTES
+let cl=5,world=10;
 
-function actualizarOyentes() {
-    cl += Math.floor(Math.random()*3)-1;
-    world += Math.floor(Math.random()*3)-1;
-
-    cl = Math.max(3, cl);
-    world = Math.max(5, world);
-
-    document.getElementById("cl").innerText = cl;
-    document.getElementById("world").innerText = world;
+function actualizar(){
+cl+=Math.floor(Math.random()*3)-1;
+world+=Math.floor(Math.random()*3)-1;
+cl=Math.max(3,cl);
+world=Math.max(5,world);
+document.getElementById("cl").innerText=cl;
+document.getElementById("world").innerText=world;
 }
+setInterval(actualizar,20000);
 
-function nuevaVisita() {
-    cl += 1;
-    world += 2;
+// CARRUSEL
+function scrollCarousel(dir){
+const track=document.getElementById("track");
+track.scrollBy({left:dir*260,behavior:"smooth"});
 }
-
-// FONDO DINÁMICO
-function cambiarFondo() {
-    const hora = new Date().getHours();
-    if (hora >= 7 && hora < 18) {
-        document.body.style.background = "linear-gradient(180deg, #1e3a8a, #2563eb)";
-    } else {
-        document.body.style.background = "linear-gradient(180deg, #0a1f44, #020617)";
-    }
-}
-
-cambiarFondo();
-actualizarOyentes();
-nuevaVisita();
-
-setInterval(actualizarOyentes, 20000);
-setInterval(cambiarFondo, 60000);
 
 </script>
 
