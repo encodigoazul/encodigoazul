@@ -6,32 +6,48 @@
 <title>En Código Azul Radio</title>
 
 <style>
-body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    color: #e0ecff;
-    transition: background 1s ease;
+
+/* RESET */
+* {
+    box-sizing: border-box;
 }
 
-/* HEADER */
+/* BODY */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #0a1f44, #020617);
+    color: #e0ecff;
+}
+
+/* CONTENEDOR CENTRAL (clave pro) */
+.container {
+    max-width: 850px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* HEADER PRO */
 header {
     text-align: center;
-    padding: 30px 15px 10px;
+    padding: 40px 20px 25px;
+    background: linear-gradient(180deg, #0f2a5c, #0a1f44);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.5);
 }
 
 header h1 {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 900;
-    margin: 10px 0;
+    margin: 0;
 }
 
-/* 🔴 EN VIVO MEJORADO */
+/* EN VIVO PRO */
 .live {
-    color: #ff2d2d;
-    font-weight: 900;
+    margin-top: 8px;
     font-size: 22px;
-    letter-spacing: 1px;
-    animation: blink 1s infinite, glowText 2s infinite;
+    font-weight: 900;
+    color: #ff2d2d;
+    animation: blink 1s infinite, glow 2s infinite;
 }
 
 @keyframes blink {
@@ -39,58 +55,61 @@ header h1 {
     50% {opacity:0.3;}
 }
 
-@keyframes glowText {
-    0%,100% {text-shadow: 0 0 5px #ff2d2d;}
-    50% {text-shadow: 0 0 20px #ff2d2d;}
+@keyframes glow {
+    0%,100% {text-shadow:0 0 5px #ff2d2d;}
+    50% {text-shadow:0 0 20px #ff2d2d;}
 }
 
-/* CONTENIDO */
-.container {
-    padding: 15px;
-}
-
+/* TARJETAS */
 .card {
     background: #142f6e;
-    border-radius: 18px;
-    padding: 18px;
-    margin-bottom: 18px;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.35);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
 }
 
 /* TITULOS */
 h2 {
+    margin: 0 0 12px;
     font-size: 16px;
-    margin-bottom: 12px;
     color: #93c5fd;
 }
 
-/* PODCAST DESTACADO */
-.podcast-title {
-    font-size: 20px;
-    font-weight: 800;
-    color: #ffffff;
+/* RADIO */
+.player {
+    text-align: center;
 }
 
-/* FRASE REUBICADA */
-.tagline {
-    font-size: 14px;
-    color: #dbeafe;
-    margin-bottom: 12px;
+audio {
+    width: 100%;
+    max-width: 500px;
+    margin: 10px auto;
+    display: block;
+    border-radius: 10px;
 }
 
 /* ECUALIZADOR */
 .equalizer {
     display: flex;
-    gap: 4px;
+    justify-content: center;
+    gap: 5px;
     margin-bottom: 10px;
 }
+
 .bar {
     width: 4px;
     height: 10px;
     background: #60a5fa;
     border-radius: 2px;
-    animation: bounce 1s infinite ease-in-out;
+    animation: bounce 1s infinite;
 }
+
 .bar:nth-child(2){animation-delay:.2s;}
 .bar:nth-child(3){animation-delay:.4s;}
 .bar:nth-child(4){animation-delay:.6s;}
@@ -100,15 +119,10 @@ h2 {
     50% {height:25px;}
 }
 
-audio {
-    width: 100%;
-}
-
 /* STATUS */
 .status {
-    font-size: 12px;
+    font-size: 13px;
     color: #c7d2fe;
-    margin-top: 5px;
 }
 
 /* OYENTES */
@@ -119,27 +133,68 @@ audio {
     font-size: 13px;
 }
 
-/* WHATSAPP */
+/* PODCAST PRO */
+.podcast-title {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-size: 14px;
+    color: #dbeafe;
+    margin-bottom: 10px;
+}
+
+iframe {
+    width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+}
+
+/* HISTORIAS */
+.card p {
+    margin: 6px 0;
+    font-size: 14px;
+}
+
+/* WHATSAPP PRO */
 .whatsapp {
     position: fixed;
-    bottom: 15px;
-    right: 15px;
+    bottom: 20px;
+    right: 20px;
     background: #25D366;
     color: white;
-    padding: 14px 16px;
+    padding: 14px 18px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+}
+
+.whatsapp:hover {
+    transform: scale(1.05);
 }
 
 /* FOOTER */
 .footer {
     text-align: center;
     font-size: 11px;
-    padding: 15px;
+    padding: 20px;
     color: #bfdbfe;
 }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 24px;
+    }
+    .live {
+        font-size: 18px;
+    }
+}
+
 </style>
 </head>
 
@@ -153,7 +208,7 @@ audio {
 <div class="container">
 
 <!-- RADIO -->
-<div class="card">
+<div class="card player">
 <h2>🎧 Radio en vivo</h2>
 
 <div class="equalizer">
@@ -185,12 +240,10 @@ Estás escuchando En Código Azul Radio en vivo
 El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienestar
 </div>
 
-<iframe style="border-radius:12px"
+<iframe height="352"
 src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
-width="100%" height="352"
 allow="autoplay; encrypted-media">
 </iframe>
-
 </div>
 
 <!-- HISTORIAS -->
@@ -215,16 +268,14 @@ allow="autoplay; encrypted-media">
 
 <script>
 
-// AUTOPLAY INTELIGENTE
+// AUTOPLAY (puede bloquearse en algunos navegadores)
 window.addEventListener("load", () => {
     let audio = document.getElementById("radio");
     let p = audio.play();
-    if (p !== undefined) {
-        p.catch(()=>{});
-    }
+    if (p !== undefined) p.catch(()=>{});
 });
 
-// OYENTES
+// OYENTES DINÁMICOS
 let cl = 5;
 let world = 10;
 
