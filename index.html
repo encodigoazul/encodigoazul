@@ -15,14 +15,12 @@ body{
     color:#e0ecff;
 }
 
-/* CONTENEDOR */
 .container{
     max-width:900px;
     margin:auto;
     padding:20px;
 }
 
-/* HEADER */
 header{
     text-align:center;
     padding:40px 20px;
@@ -36,13 +34,12 @@ header h1{
     font-weight:900;
 }
 
-/* EN VIVO */
 .live{
     margin-top:8px;
     font-size:22px;
     font-weight:900;
     color:#ff2d2d;
-    animation:blink 1s infinite,glow 2s infinite;
+    animation:blink 1s infinite;
 }
 
 @keyframes blink{
@@ -50,12 +47,6 @@ header h1{
     50%{opacity:0.3;}
 }
 
-@keyframes glow{
-    0%,100%{text-shadow:0 0 5px #ff2d2d;}
-    50%{text-shadow:0 0 20px #ff2d2d;}
-}
-
-/* CARD */
 .card{
     background:#142f6e;
     border-radius:20px;
@@ -64,7 +55,6 @@ header h1{
     box-shadow:0 8px 30px rgba(0,0,0,0.4);
 }
 
-/* RADIO */
 .player{text-align:center;}
 
 audio{
@@ -74,7 +64,6 @@ audio{
     display:block;
 }
 
-/* ECUALIZADOR */
 .equalizer{
     display:flex;
     justify-content:center;
@@ -97,7 +86,6 @@ audio{
     50%{height:25px;}
 }
 
-/* OYENTES */
 .listeners{
     display:flex;
     justify-content:space-between;
@@ -116,46 +104,11 @@ audio{
     margin-bottom:10px;
 }
 
-/* PODCAST PRO (overlay) */
-.podcast-card{
-    position:relative;
-    border-radius:18px;
+/* SPOTIFY EMBED PRO */
+.spotify-box{
+    border-radius:16px;
     overflow:hidden;
-    margin-top:10px;
-}
-
-.podcast-card img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-}
-
-/* CAPA OSCURA */
-.overlay{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:70%;
-    background:linear-gradient(to top,rgba(0,0,0,0.85),transparent);
-}
-
-/* TEXTO */
-.podcast-info{
-    position:absolute;
-    bottom:12px;
-    left:12px;
-    right:12px;
-}
-
-.podcast-name{
-    font-size:16px;
-    font-weight:800;
-    color:white;
-}
-
-.podcast-meta{
-    font-size:12px;
-    color:#cbd5f5;
+    box-shadow:0 6px 25px rgba(0,0,0,0.5);
 }
 
 /* WHATSAPP */
@@ -171,7 +124,6 @@ audio{
     font-weight:bold;
 }
 
-/* FOOTER */
 .footer{
     text-align:center;
     font-size:11px;
@@ -209,7 +161,7 @@ audio{
 </div>
 </div>
 
-<!-- PODCAST (UNO SOLO PRO) -->
+<!-- PODCAST CORRECTO -->
 <div class="card">
 <div class="podcast-title">🎙️ Podcast</div>
 
@@ -217,21 +169,14 @@ audio{
 El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienestar
 </div>
 
-<div class="podcast-card">
-<img src="https://i.imgur.com/8Km9tLL.jpg">
-
-<div class="overlay"></div>
-
-<div class="podcast-info">
-<div class="podcast-name">
-Entrevista a Enfermera Ernestina Parada Leiva
-</div>
-<div class="podcast-meta">
-9 abr • En Código Azul
-</div>
+<div class="spotify-box">
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/show/0HUu3XkUTCDn2WqkYugt2l"
+width="100%" height="352"
+allow="autoplay; encrypted-media">
+</iframe>
 </div>
 
-</div>
 </div>
 
 <!-- HISTORIAS -->
