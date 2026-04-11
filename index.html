@@ -116,39 +116,21 @@ audio{
     margin-bottom:10px;
 }
 
-/* CARRUSEL */
-.carousel{
-    position:relative;
-    overflow:hidden;
-}
-
-.carousel-track{
-    display:flex;
-    gap:15px;
-    overflow-x:auto;
-    scroll-behavior:smooth;
-}
-
-.carousel-track::-webkit-scrollbar{
-    display:none;
-}
-
-/* TARJETA PODCAST */
+/* PODCAST PRO (overlay) */
 .podcast-card{
-    min-width:250px;
-    border-radius:16px;
-    overflow:hidden;
     position:relative;
-    flex-shrink:0;
+    border-radius:18px;
+    overflow:hidden;
+    margin-top:10px;
 }
 
 .podcast-card img{
     width:100%;
-    height:200px;
+    height:250px;
     object-fit:cover;
 }
 
-/* OVERLAY */
+/* CAPA OSCURA */
 .overlay{
     position:absolute;
     bottom:0;
@@ -160,38 +142,21 @@ audio{
 /* TEXTO */
 .podcast-info{
     position:absolute;
-    bottom:10px;
-    left:10px;
-    right:10px;
+    bottom:12px;
+    left:12px;
+    right:12px;
 }
 
 .podcast-name{
-    font-size:14px;
+    font-size:16px;
     font-weight:800;
     color:white;
 }
 
 .podcast-meta{
-    font-size:11px;
+    font-size:12px;
     color:#cbd5f5;
 }
-
-/* BOTONES */
-.carousel-btn{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    background:rgba(0,0,0,0.5);
-    border:none;
-    color:white;
-    font-size:20px;
-    padding:10px;
-    cursor:pointer;
-    border-radius:50%;
-}
-
-.prev{left:5px;}
-.next{right:5px;}
 
 /* WHATSAPP */
 .whatsapp{
@@ -212,7 +177,6 @@ audio{
     font-size:11px;
     padding:20px;
 }
-
 </style>
 </head>
 
@@ -245,7 +209,7 @@ audio{
 </div>
 </div>
 
-<!-- PODCAST -->
+<!-- PODCAST (UNO SOLO PRO) -->
 <div class="card">
 <div class="podcast-title">🎙️ Podcast</div>
 
@@ -253,46 +217,21 @@ audio{
 El espacio en donde hablamos de temas que impactan nuestra vida y nuestro bienestar
 </div>
 
-<div class="carousel">
-<button class="carousel-btn prev" onclick="scrollCarousel(-1)">❮</button>
-
-<div class="carousel-track" id="track">
-
-<!-- ITEM 1 -->
 <div class="podcast-card">
 <img src="https://i.imgur.com/8Km9tLL.jpg">
+
 <div class="overlay"></div>
+
 <div class="podcast-info">
-<div class="podcast-name">Entrevista a Ernestina Parada Leiva</div>
-<div class="podcast-meta">9 abr • En Código Azul</div>
+<div class="podcast-name">
+Entrevista a Enfermera Ernestina Parada Leiva
 </div>
-</div>
-
-<!-- ITEM 2 -->
-<div class="podcast-card">
-<img src="https://i.imgur.com/9Xn4K8g.jpg">
-<div class="overlay"></div>
-<div class="podcast-info">
-<div class="podcast-name">Salud mental en enfermería</div>
-<div class="podcast-meta">5 abr • En Código Azul</div>
-</div>
-</div>
-
-<!-- ITEM 3 -->
-<div class="podcast-card">
-<img src="https://i.imgur.com/Y3G6Q6b.jpg">
-<div class="overlay"></div>
-<div class="podcast-info">
-<div class="podcast-name">Experiencias en urgencias</div>
-<div class="podcast-meta">2 abr • En Código Azul</div>
+<div class="podcast-meta">
+9 abr • En Código Azul
 </div>
 </div>
 
 </div>
-
-<button class="carousel-btn next" onclick="scrollCarousel(1)">❯</button>
-</div>
-
 </div>
 
 <!-- HISTORIAS -->
@@ -334,13 +273,8 @@ world=Math.max(5,world);
 document.getElementById("cl").innerText=cl;
 document.getElementById("world").innerText=world;
 }
-setInterval(actualizar,20000);
 
-// CARRUSEL
-function scrollCarousel(dir){
-const track=document.getElementById("track");
-track.scrollBy({left:dir*260,behavior:"smooth"});
-}
+setInterval(actualizar,20000);
 
 </script>
 
